@@ -18,3 +18,18 @@ newlines in the .sh file
 
 The part about the PATH I think he talked about it last week. so idk
 
+
+/bin/uname
+/bin/uname \n /bin/uname
+/bin/uname \n\n /bin/uname
+uname
+/bin/cat /etc/passwd
+cat /etc/passwd
+cat /etc/passwd | sort 
+cat < /etc/passwd
+bash < /tmp/c1 &\n echo 2 \n sleep 3
+cd .. \n pwd
+
+uname > /tmp/x \n cat /tmp/x' "redirect output"
+(echo "sleep 1" ; echo "echo 1") > /tmp/c1
+
