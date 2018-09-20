@@ -9,6 +9,7 @@ shellInput = ""
 
 # function to launch the commands. not containing "/"  taken mostly from p3-exec.py
 def launch(args):
+	#print(args[0][0]) 		#for debugging
 	pid = os.getpid()
 	#os.write(1, ("About to fork (pid:%d)\n" % pid).encode())		#for debugging
 	rc = os.fork()	
@@ -17,14 +18,21 @@ def launch(args):
 		os.write(2, ("fork failed, returning %d\n" % rc).encode())
 		sys.exit(1)
 		
-	elif rc == 0:                   # child		
-		for dir in re.split(":", os.environ['PATH']): # try each directory in the path
-			program = "%s/%s" % (dir, args[0])
+	elif rc == 0:                   # child
+		if (args[0][0] == "/"):
 			try:
-				os.execve(program, args, os.environ) 	# try to exec program
+				#os.execve = execve(path, argv, env)  	#from help()
+				os.execve(args[0], args, os.environ) 	# try to exec program
 			except FileNotFoundError:             		# ...expected
-				pass                              		# ...fail quietly
-
+				pass
+		else:
+			for dir in re.split(":", os.environ['PATH']): # try each directory in the path
+				program = "%s/%s" % (dir, args[0])
+				try:
+					os.execve(program, args, os.environ) 	# try to exec program
+				except FileNotFoundError:             		# ...expected
+					pass
+					
 		sys.exit(1)                 # terminate with error
 
 	else:                           # parent (forked ok)

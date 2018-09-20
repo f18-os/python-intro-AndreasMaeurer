@@ -1,15 +1,15 @@
-FAILED: no parameter, full pathname
+PASSED: no parameter, full pathname
   /bin/uname
-FAILED: two commands, full pathname
+PASSED: two commands, full pathname
   /bin/uname 
  /bin/uname
-FAILED: two commands, blank line in-between, full pathname
+PASSED: two commands, blank line in-between, full pathname
   /bin/uname 
 
  /bin/uname
 PASSED: no parameter, no pathname
   uname
-FAILED: one parameter, full pathname
+PASSED: one parameter, full pathname
   /bin/cat /etc/passwd
 PASSED: one parameter, no pathname
   cat /etc/passwd
